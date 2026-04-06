@@ -1,7 +1,7 @@
 #include "Cart.h"
 #include <iostream>
 
-// constructor: initializes the cart with no courses, null pointers, and zero cost
+// constructor: initializes an empty cart, it initalitzes the pointers to nullptr count and cost to 0 (because its empty)
 Cart::Cart() : selectedCourses(nullptr), schedules(nullptr), count(0), totalCost(0.0) {}
 
 // destructor: ensures that dynamically allocated memory is freed when the Cart object is destroyed
@@ -12,6 +12,14 @@ Cart::~Cart() {
 
 // adds a new course to the cart by resizing the internal arrays.
 void Cart::addCourse(const Course& c) {
+    /*This does the following things:
+    1.Create new arrays of size count + 1
+    2.Copy old data into new arrays
+    3.Add new course at the end
+    4.Delete old arrays
+    5.Update pointers
+    6.Update count and totalCost
+    */
     // creates new temporary arrays that are one slot larger than the current count
     Course* tempC = new Course[count + 1];
     std::string* tempS = new std::string[count + 1];
@@ -39,7 +47,7 @@ void Cart::addCourse(const Course& c) {
     count++;
 }
 
-// displaying all courses currently in the cart to the console
+// displaying all courses and their names and prices currently in the cart to the console
 void Cart::listCart() const {
     for(int i = 0; i < count; i++) {
         std::cout << selectedCourses[i].getCourseNumber() << " - "

@@ -2,13 +2,19 @@
 #define CART_H 
 #include "Course.h"
 #include <string>  
+/*
+The Cart class simulates a shopping cart system where students can:
+-Add courses
+-View selected courses
+-Checkout (includes taxes)
+*/
 
 class Cart {
 private:
-    // pointers used to manage dynamic arrays in memory
+    // These pointers track course objects and schedule strings respectively.
     Course* selectedCourses;   // pointer to a dynamic array of Course objects
     std::string* schedules;    // pointer to a dynamic array of strings for course schedules
-    
+    // These variables track the amount courses and their total price.
     int count;                 // tracks the number of courses currently in the cart
     double totalCost;          // tracks the cumulative price of all courses in the cart
 
